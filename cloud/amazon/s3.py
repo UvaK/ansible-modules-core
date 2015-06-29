@@ -318,7 +318,7 @@ def is_walrus(s3_url):
 def get_md5_digest(local_file):
     md5 = hashlib.md5()
     with open(local_file, 'rb') as f:
-        for data in f.read(1024 ** 2):
+        for data in iter(lambda : f.read(1024 ** 2), ''):
             md5.update(data)
     return md5.hexdigest()
 
